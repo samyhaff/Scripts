@@ -1,0 +1,9 @@
+#!/bin/sh 
+
+file=~/.config/zathura/zathurarc
+
+echo "set recolor" > $file
+echo "set recolor-darkcolor \"$(colorsXresources zathura.background)\"" >> $file 
+echo "set recolor-lightcolor \"$(colorsXresources zathura.foreground)\"" >> $file 
+echo "map i recolor" >> $file 
+echo "set selection-clipboard clipboard" >> $file

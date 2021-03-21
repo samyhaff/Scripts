@@ -1,0 +1,18 @@
+#!/bin/sh 
+
+colorscheme="$1"
+folder=~/.config/colorschemes/
+
+rm $folder/current
+cp $folder/$colorscheme $folder/current
+xrdb ~/.Xresources
+
+echo "$1" > $folder/name
+
+zathuracolors
+
+killall dunst 
+fg=$(colorsXresources dunst.foreground)
+bg=$(colorsXresources dunst.background)
+fr=$(colorsXresources dunst.frame)
+dunst -config ~/.config/dunst/dunstrc -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -bf "fg" -cf "$fg" -nf "$fg" -frame_color "$fr" &

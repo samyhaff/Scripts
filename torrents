@@ -1,0 +1,8 @@
+#!/bin/bash
+
+query="$(echo | dmenu -p "Query: ")"
+[ -z $query ] && exit 1
+list=$(torrentscrap "$(echo $query | sed 's/ /+/g')")
+choice=$(echo "$list" | dmenu -l 10)
+download=$(echo $choice | awk '{print $NF}')
+! [ -z $download ] && qbittorrent https://nyaa.si$download &

@@ -1,0 +1,6 @@
+#!/bin/bash 
+
+killall -q lemonbar
+killall -q lemonconfig
+
+python3 lemonconfig.py | lemonbar -p -g 1920x30+0+0 -F "#EBDBB2" -B "#282828" -u 0 -o -2 -f "Iosevka Regular"-10 -o -2 -f "Hack Nerd Font"-10 | $SHELL

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+search_folders=(~/Downloads/ ~/Notes/ ~/Documents/)
+xdg-open "$(find ${search_folders[@]} -type f -not -path '*/\.*' | dmenu -i -l 10)"
