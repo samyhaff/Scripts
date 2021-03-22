@@ -1,16 +1,20 @@
 #!/bin/sh 
 
-colorscheme="$1"
+colorscheme="$(ls ~/.config/colorschemes/ | dmenu -l 10)"
 folder=~/.config/colorschemes/
 
 rm $folder/current
 cp $folder/$colorscheme $folder/current
 xrdb ~/.Xresources
 
-echo "$1" > $folder/name
+# nvim colors
+echo "colorscheme $colorscheme" > ~/.config/nvim/color.vim
+echo "g:airline_theme = $colorscheme" >> ~/.config/nvim/color.vim
 
+# zathura colors
 zathuracolors
 
+# dunst colors 
 killall dunst 
 fg=$(colorsXresources dunst.foreground)
 bg=$(colorsXresources dunst.background)
