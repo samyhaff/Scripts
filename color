@@ -9,7 +9,7 @@ xrdb ~/.Xresources
 
 # nvim colors
 echo "colorscheme $colorscheme" > ~/.config/nvim/color.vim
-echo "g:airline_theme = $colorscheme" >> ~/.config/nvim/color.vim
+echo "let g:airline_theme=\"$colorscheme\"" >> ~/.config/nvim/color.vim
 
 # zathura colors
 zathuracolors
@@ -20,3 +20,7 @@ fg=$(colorsXresources dunst.foreground)
 bg=$(colorsXresources dunst.background)
 fr=$(colorsXresources dunst.frame)
 dunst -config ~/.config/dunst/dunstrc -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -bf "fg" -cf "$fg" -nf "$fg" -frame_color "$fr" &
+
+# wallpaper 
+convert -size 1920x1080 xc:"$(xrdb -query | grep "*.background" | awk '{print $NF}')" ~/Wallpapers/wall.png
+xwallpaper --zoom ~/Wallpapers/wall.png
