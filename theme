@@ -26,5 +26,4 @@ convert -size 1920x1080 xc:"$(xrdb -query | grep "*.background" | awk '{print $N
 xwallpaper --zoom ~/Wallpapers/wall.png
 
 # gtk
-gtk="$(xrdb -query | grep "GTK" | awk '{print $NF}')" 
-sed -i "s/gtk-theme-name=.*/gtk-theme-name=$gtk/" ~/.config/gtk-3.0/settings.ini
+oomox-cli /opt/oomox/scripted_colors/xresources/xresources-reverse -o theme
