@@ -1,10 +1,8 @@
 #!/bin/sh 
 
 colorscheme="$(ls ~/.config/colorschemes/ | dmenu -l 10)"
-folder=~/.config/colorschemes/
 
-rm $folder/current
-cp $folder/$colorscheme $folder/current
+sed -i "1s,.*,#include \"/home/samy/.config/colorschemes/$colorscheme\"," /home/samy/.Xresources
 xrdb ~/.Xresources
 
 # nvim colors
