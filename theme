@@ -1,6 +1,9 @@
 #!/bin/sh 
 
+# TODO support for light variants of themes
+
 colorscheme="$(ls ~/.config/colorschemes/ | dmenu -l 10)"
+[ -z $colorscheme ] && exit 1
 
 sed -i "1s,.*,#include \"/home/samy/.config/colorschemes/$colorscheme\"," /home/samy/.Xresources
 xrdb ~/.Xresources
