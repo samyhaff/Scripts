@@ -3,6 +3,7 @@
 # TODO move color.vim to init.vim
 
 colorscheme="$(ls ~/.config/colorschemes/ | dmenu -l 10)"
+light=$(echo $colorscheme | cut -s -d- -f2)
 [ -z $colorscheme ] && exit 1
 
 sed -i "1s,.*,#include \"/home/samy/.config/colorschemes/$colorscheme\"," /home/samy/.Xresources
@@ -10,10 +11,9 @@ xrdb ~/.Xresources
 
 # nvim colors
 vim_colorscheme=$(echo $colorscheme | cut -d- -f1)
-vim_light=$(echo $colorscheme | cut -s -d- -f2)
 echo "colorscheme $vim_colorscheme" > ~/.config/nvim/color.vim
 echo "let g:airline_theme=\"$vim_colorscheme\"" >> ~/.config/nvim/color.vim
-[ -n "$vim_light" ] && echo "set bg=light" >> ~/.config/nvim/color.vim
+[ -n "$light" ] && echo "set bg=light" >> ~/.config/nvim/color.vim
 
 # zathura colors
 zathuracolors
@@ -30,4 +30,9 @@ convert -size 1920x1080 xc:"$(xrdb -query | grep "*.background" | awk '{print $N
 xwallpaper --zoom ~/Wallpapers/wall.png
 
 # gtk
-oomox-cli /opt/oomox/scripted_colors/xresources/xresources-reverse -o current
+if [ -n "$light" ] 
+then 
+    sed -i "2s/.*/gtk-theme-name=Adwaita/" ~/.config/gtk-3.0/settings.ini
+else
+    sed -i "2s/.*/gtk-theme-name=Adwaita-dark/" ~/.config/gtk-3.0/settings.ini
+fi
