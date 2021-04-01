@@ -1,6 +1,6 @@
 #!/bin/sh 
 
-# TODO support for light variants of themes
+# TODO move color.vim to init.vim
 
 colorscheme="$(ls ~/.config/colorschemes/ | dmenu -l 10)"
 [ -z $colorscheme ] && exit 1
@@ -9,8 +9,11 @@ sed -i "1s,.*,#include \"/home/samy/.config/colorschemes/$colorscheme\"," /home/
 xrdb ~/.Xresources
 
 # nvim colors
-echo "colorscheme $colorscheme" > ~/.config/nvim/color.vim
-echo "let g:airline_theme=\"$colorscheme\"" >> ~/.config/nvim/color.vim
+vim_colorscheme=$(echo $colorscheme | cut -d- -f1)
+vim_light=$(echo $colorscheme | cut -s -d- -f2)
+echo "colorscheme $vim_colorscheme" > ~/.config/nvim/color.vim
+echo "let g:airline_theme=\"$vim_colorscheme\"" >> ~/.config/nvim/color.vim
+[ -n "$vim_light" ] && echo "set bg=light" >> ~/.config/nvim/color.vim
 
 # zathura colors
 zathuracolors
