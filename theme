@@ -2,7 +2,7 @@
 
 # TODO move color.vim to init.vim
 
-colorscheme="$(ls ~/.config/colorschemes/ | dmenu -l 10)"
+colorscheme="$(ls ~/.config/colorschemes/ | dmenu -i -l 10)"
 light=$(echo $colorscheme | cut -s -d- -f2)
 [ -z $colorscheme ] && exit 1
 
@@ -11,9 +11,13 @@ xrdb ~/.Xresources
 
 # nvim colors
 vim_colorscheme=$(echo $colorscheme | cut -d- -f1)
-echo "colorscheme $vim_colorscheme" > ~/.config/nvim/color.vim
-echo "let g:airline_theme=\"$vim_colorscheme\"" >> ~/.config/nvim/color.vim
-[ -n "$light" ] && echo "set bg=light" >> ~/.config/nvim/color.vim
+sed -i "s/colorscheme .*/colorscheme $vim_colorscheme/" ~/.config/nvim/init.vim
+if [ -n "$light ]
+then 
+    sed -i "s/set bg=.*/set bg=light/" ~/.config/nvim/init.vim 
+else
+    sed -i "s/set bg=.*/set bg=dark/" ~/.config/nvim/init.vim 
+fi
 
 # zathura colors
 zathuracolors
