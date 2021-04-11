@@ -2,8 +2,14 @@
 
 file=~/.config/zathura/zathurarc
 
-echo "set recolor" > $file
-echo "set recolor-darkcolor \"$(colorsXresources zathura.background)\"" >> $file 
-echo "set recolor-lightcolor \"$(colorsXresources zathura.foreground)\"" >> $file 
-echo "map i recolor" >> $file 
-echo "set selection-clipboard clipboard" >> $file
+cat > $file << EOF
+set recolor
+set recolor-darkcolor "$(colorsXresources zathura.background)"
+set recolor-lightcolor "$(colorsXresources zathura.foreground)"
+set inputbar-fg "$(colorsXresources zathura.background)"
+set inputbar-bg "$(colorsXresources zathura.foreground)"
+set statusbar-fg "$(colorsXresources zathura.background)"
+set statusbar-bg "$(colorsXresources zathura.foreground)"
+map i recolor
+set selection-clipboard clipboard
+EOF
