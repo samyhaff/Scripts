@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# necessary for cron
+export DISPLAY=:0
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
+
+set="hollow_knight"
+path=/home/samy/Wallpapers/$set
+selection="$(find $path -type f | shuf -n 1)"
+xwallpaper --zoom $selection
