@@ -3,7 +3,7 @@
 # TODO move color.vim to init.vim
 
 colorscheme="$(ls ~/.config/colorschemes/ | dmenu -i -l 10)"
-light=$(echo $colorscheme | cut -s -d- -f2)
+light=$(echo $colorscheme | rev | cut -s -d- -f1 | rev)
 [ -z $colorscheme ] && exit 1
 
 sed -i "1s,.*,#include \"/home/samy/.config/colorschemes/$colorscheme\"," /home/samy/.Xresources
@@ -12,7 +12,7 @@ xrdb ~/.Xresources
 # nvim colors
 vim_colorscheme=$(echo $colorscheme | cut -d- -f1)
 sed -i "s/colorscheme .*/colorscheme $vim_colorscheme/" ~/.config/nvim/init.vim
-if [ -n "$light ]
+if [ "$light" = "light" ]
 then 
     sed -i "s/set bg=.*/set bg=light/" ~/.config/nvim/init.vim 
 else
@@ -30,13 +30,13 @@ fr=$(colorsXresources dunst.frame)
 dunst -config ~/.config/dunst/dunstrc -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -bf "fg" -cf "$fg" -nf "$fg" -frame_color "$fr" &
 
 # wallpaper 
-convert -size 1920x1080 xc:"$(xrdb -query | grep "*.background" | awk '{print $NF}')" ~/Wallpapers/wall.png
-xwallpaper --zoom ~/Wallpapers/wall.png
+# convert -size 1920x1080 xc:"$(xrdb -query | grep "*.background" | awk '{print $NF}')" ~/Wallpapers/wall.png
+# xwallpaper --zoom ~/Wallpapers/wall.png
 
 # gtk
-if [ -n "$light" ] 
+if [ "$light" = "light" ] 
 then 
-    sed -i "2s/.*/gtk-theme-name=Adwaita/" ~/.config/gtk-3.0/settings.ini
+    sed -i "2s/.*/gtk-theme-name=Arc/" ~/.config/gtk-3.0/settings.ini
 else
-    sed -i "2s/.*/gtk-theme-name=Adwaita-dark/" ~/.config/gtk-3.0/settings.ini
+    sed -i "2s/.*/gtk-theme-name=Arc-Dark/" ~/.config/gtk-3.0/settings.ini
 fi
