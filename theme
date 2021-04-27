@@ -10,14 +10,15 @@ sed -i "1s,.*,#include \"/home/samy/.config/colorschemes/$colorscheme\"," /home/
 xrdb ~/.Xresources
 
 # nvim colors
-vim_colorscheme=$(echo $colorscheme | cut -d- -f1)
-sed -i "s/colorscheme .*/colorscheme $vim_colorscheme/" ~/.config/nvim/init.vim
 if [ "$light" = "light" ]
 then 
+    vim_colorscheme=$(echo $colorscheme | rev | cut -d- -f2- | rev)
     sed -i "s/set bg=.*/set bg=light/" ~/.config/nvim/init.vim 
 else
+    vim_colorscheme="$colorscheme"
     sed -i "s/set bg=.*/set bg=dark/" ~/.config/nvim/init.vim 
 fi
+sed -i "s/colorscheme .*/colorscheme $vim_colorscheme/" ~/.config/nvim/init.vim
 
 # zathura colors
 zathuracolors
