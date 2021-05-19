@@ -1,4 +1,4 @@
 #!/bin/sh 
 
-echo 90 | doas tee /sys/class/power_supply/BAT0/charge_stop_threshold
-echo 85 | doas tee /sys/class/power_supply/BAT0/charge_start_threshold
+echo 90 | sudo tee /sys/class/power_supply/BAT0/charge_stop_threshold
+echo 85 | sudo tee /sys/class/power_supply/BAT0/charge_start_threshold
