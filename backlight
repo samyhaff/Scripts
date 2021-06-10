@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e
 file="/sys/class/backlight/amdgpu_bl0/brightness"
