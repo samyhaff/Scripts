@@ -1,22 +1,15 @@
 #!/bin/sh 
 
+# TODO live st reload
+# TODO nvim statusline
+# TODO pywal clone
+
 colorscheme="$(ls ~/.config/colorschemes/ | dmenu -i -l 10)"
 light=$(echo $colorscheme | rev | cut -s -d- -f1 | rev)
 [ -z $colorscheme ] && exit 1
 
 sed -i "1s,.*,#include \"/home/samy/.config/colorschemes/$colorscheme\"," /home/samy/.Xresources
 xrdb ~/.Xresources
-
-# nvim colors
-if [ "$light" = "light" ]
-then 
-    vim_colorscheme=$(echo $colorscheme | rev | cut -d- -f2- | rev)
-    sed -i "s/set bg=.*/set bg=light/" ~/.config/nvim/general.vim
-else
-    vim_colorscheme="$colorscheme"
-    sed -i "s/set bg=.*/set bg=dark/" ~/.config/nvim/general.vim 
-fi
-sed -i "s/colorscheme .*/colorscheme $vim_colorscheme/" ~/.config/nvim/general.vim
 
 # zathura colors
 zathuracolors
@@ -31,14 +24,3 @@ dunst -config ~/.config/dunst/dunstrc -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -b
 # wallpaper 
 convert -size 1920x1080 xc:"$(xrdb -query | grep "*.background" | awk '{print $NF}')" ~/Wallpapers/wall.png
 feh --bg-scale ~/Wallpapers/wall.png
-
-# alacritty
-alacritty_colors
-
-# gtk
-if [ "$light" = "light" ] 
-then 
-    sed -i "2s/.*/gtk-theme-name=Adwaita/" ~/.config/gtk-3.0/settings.ini
-else
-    sed -i "2s/.*/gtk-theme-name=Materia-dark/" ~/.config/gtk-3.0/settings.ini
-fi
