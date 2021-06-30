@@ -1,0 +1,7 @@
+#!/bin/sh
+
+[ -z $1 ] && image=$(sxiv ~/Wallpapers/* -bo) || image=$1 
+wal -i "$image" -nzt
+cat ~/.cache/wal/colors | toxrdb > ~/.config/colorschemes/wall
+feh --bg-scale "$image"
+theme wall

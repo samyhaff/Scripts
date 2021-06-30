@@ -1,11 +1,14 @@
 #!/bin/sh 
 
-colorscheme="$(ls ~/.config/colorschemes/ | dmenu -i -l 10)"
-light=$(echo $colorscheme | rev | cut -s -d- -f1 | rev)
+[ -z $1 ] && colorscheme="$(ls ~/.config/colorschemes/ | dmenu -i -l 10)" || colorscheme="$1"
 [ -z $colorscheme ] && exit 1
 
 sed -i "1s,.*,#include \"/home/samy/.config/colorschemes/$colorscheme\"," /home/samy/.Xresources
 xrdb ~/.Xresources
+
+# nvim colors
+vim_colorscheme="$colorscheme"
+sed -i "s/colorscheme .*/colorscheme $vim_colorscheme/" ~/.config/nvim/general.vim
 
 # zathura colors
 zathuracolors
@@ -18,5 +21,5 @@ fr=$(colorsXresources dunst.frame)
 dunst -config ~/.config/dunst/dunstrc -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -bf "fg" -cf "$fg" -nf "$fg" -frame_color "$fr" &
 
 # wallpaper 
-convert -size 1920x1080 xc:"$(xrdb -query | grep "*.background" | awk '{print $NF}')" ~/Wallpapers/wall.png
-feh --bg-scale ~/Wallpapers/wall.png
+# convert -size 1920x1080 xc:"$(xrdb -query | grep "*.background" | awk '{print $NF}')" ~/Wallpapers/wall.png
+# feh --bg-scale ~/Wallpapers/wall.png
