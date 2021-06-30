@@ -1,9 +1,5 @@
 #!/bin/sh 
 
-# TODO live st reload
-# TODO nvim statusline
-# TODO pywal clone
-
 colorscheme="$(ls ~/.config/colorschemes/ | dmenu -i -l 10)"
 light=$(echo $colorscheme | rev | cut -s -d- -f1 | rev)
 [ -z $colorscheme ] && exit 1
