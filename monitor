@@ -1,0 +1,7 @@
+#!/bin/sh
+
+choice=$(echo "home\nportable\natos" | dmenu)
+[ -z $choice ] && exit 1
+
+${choice}monitor
+${choice}monitor
