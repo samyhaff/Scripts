@@ -1,0 +1,13 @@
+#!/bin/sh
+
+file=~/.cache/wal/colors.Xresources
+
+echo '#define' FOREGROUND $(grep "foreground" $file | cut -d " " -f 2)
+echo '#define' BACKGROUND $(grep "background" $file | cut -d " " -f 2)
+
+counter=0
+while [ $counter -lt 16 ]
+do
+    echo '#define' COLOR$counter $(grep "color$counter:" $file | cut -d " " -f 2)
+    counter=$(expr $counter + 1)
+done

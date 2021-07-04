@@ -2,6 +2,6 @@
 
 [ -z $1 ] && image=$(sxiv ~/Wallpapers/* -bo) || image=$1 
 wal -i "$image" -ntq
-cat ~/.cache/wal/colors | toxrdb > ~/.config/colorschemes/xresources
+cat ~/.cache/wal/colors | pywalconvert > ~/.config/colorschemes/xresources
 feh --bg-scale "$image"
 theme xresources
