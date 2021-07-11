@@ -10,6 +10,9 @@ xrdb ~/.Xresources
 vim_colorscheme="$colorscheme"
 sed -i "s/colorscheme .*/colorscheme $vim_colorscheme/" ~/.config/nvim/general.vim
 
+# dwm live reload
+xdotool key super+shift+x
+
 # zathura colors
 zathuracolors
 
@@ -27,4 +30,3 @@ dunst -config ~/.config/dunst/dunstrc -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -b
 # GTK
 oomox-cli /opt/oomox/scripted_colors/xresources/xresources-reverse
 sed "s/gtk-theme-name=.*/gtk-theme-name=oomox-xresources-reverse/" ~/.config/gtk-3.0/settings.ini -i
-

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-query="$(echo | dmenu -p "Query: ")"
+query=$*
 [ -z $query ] && exit 1
 list=$(torrentscrap "$(echo $query | sed 's/ /+/g')")
-choice=$(echo "$list" | dmenu -l 10)
+choice=$(echo "$list" | fzf)
 download=$(echo $choice | awk '{print $NF}')
-! [ -z $download ] && qbittorrent https://nyaa.si$download &
+! [ -z $download ] && aria2c https://nyaa.si$download &

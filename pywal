@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ -z $1 ] && image=$(sxiv ~/Wallpapers/* -bo) || image=$1 
+[ -z $1 ] && image=$(sxiv ~/Wallpapers -bot) || image=$1 
 wal -i "$image" -ntq
 cat ~/.cache/wal/colors | pywalconvert > ~/.config/colorschemes/xresources
 feh --bg-scale "$image"
