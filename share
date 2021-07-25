@@ -1,6 +1,7 @@
 #!/bin/bash
 
-file=$(find $HOME -type f | fzf)
+[ -z $1 ] && file=$(find $HOME -type f | fzf) || file="$1"
 [ -z $file ] && exit 1
-curl -F "file=@$(find $HOME -type f | fzf)" 0x0.st | xclip -selection c
+
+curl -s -F "file=@$file" 0x0.st | xclip -selection c
 notify-send "copied url to clipboard"
