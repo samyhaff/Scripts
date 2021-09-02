@@ -1,15 +1,22 @@
 #!/bin/sh
 
 c=$(cat /sys/class/power_supply/BAT0/capacity)
+status=$(cat /sys/class/power_supply/BAT0/status)
 
-if [ "$c" = 100 ]; then
-    echo " $c%"
-elif [ "$c" -gt 75 ]; then
-    echo " $c%"
-elif [ "$c" -gt 50 ]; then
-    echo " $c%"
-elif [ "$c" -gt 25 ]; then 
-    echo " $c%"
+if [ "$status" = Charging ]; then
+    echo " $c%"
 else
-    echo " $c%"
+    echo " $c%"
 fi
+
+# if [ "$c" = 100 ]; then
+#     echo " $c%"
+# elif [ "$c" -gt 75 ]; then
+#     echo " $c%"
+# elif [ "$c" -gt 50 ]; then
+#     echo " $c%"
+# elif [ "$c" -gt 25 ]; then 
+#     echo " $c%"
+# else
+#     echo " $c%"
+# fi
