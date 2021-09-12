@@ -24,7 +24,7 @@ fr=$(colorsXresources dunst.frame)
 dunst -config ~/.config/dunst/dunstrc -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -bf "fg" -cf "$fg" -nf "$fg" -frame_color "$fr" &
 
 # wallpaper 
-convert -size 1920x1080 xc:"$(xrdb -query | grep "*.background" | awk '{print $NF}')" ~/Wallpapers/wall.png
+convert -size 1920x1080 xc:"$(xrdb -query | grep "*.color8" | awk '{print $NF}')" ~/Wallpapers/wall.png
 feh --bg-scale ~/Wallpapers/wall.png
 
 # GTK

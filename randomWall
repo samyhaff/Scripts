@@ -4,7 +4,8 @@
 export DISPLAY=:0
 export XDG_RUNTIME_DIR=/run/user/$(id -u)
 
-set="hollow_knight"
+# set="hollow_knight"
+set="nordic-wallpapers"
 path=/home/samy/Wallpapers/$set
 selection="$(find $path -type f | shuf -n 1)"
 feh --bg-scale $selection
