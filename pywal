@@ -4,5 +4,5 @@
 [ -z "$image" ] && exit 1
 wal -i "$image" -ntq
 cat ~/.cache/wal/colors | pywalconvert > ~/.config/colorschemes/xresources
-feh --bg-scale "$image"
 theme xresources
+feh --bg-scale "$image"
