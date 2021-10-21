@@ -25,7 +25,11 @@ killall dunst
 fg=$(colorsXresources dunst.foreground)
 bg=$(colorsXresources dunst.background)
 fr=$(colorsXresources dunst.frame)
-dunst -config ~/.config/dunst/dunstrc -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -bf "fg" -cf "$fg" -nf "$fg" -frame_color "$fr" &
+sed -i "s/frame_color .*/frame_color = \"$fr\"/" ~/.config/dunst/dunstrc
+sed -i "s/foreground .*/foreground = \"$fg\"/g" ~/.config/dunst/dunstrc
+sed -i "s/fbackground .*/background = \"$bg\"/g" ~/.config/dunst/dunstrc
+
+dunst &
 
 # GTK
 # oomox-cli /opt/oomox/scripted_colors/xresources/xresources-reverse
