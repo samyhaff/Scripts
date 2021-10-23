@@ -1,0 +1,14 @@
+#!/bin/bash
+
+wall="/home/samy/Wallpapers/xkcd.png"
+
+max=$(curl -s https://xkcd.com/info.0.json | jq '.num')
+
+number=$(( $RANDOM % $max))  # get a random comic number
+img=$(curl -s https://xkcd.com/$number/info.0.json | jq -r '.img')
+
+wget "$img" -q -O "$wall"
+
+convert "$wall" -channel RGB -negate "$wall"
+convert "$wall" -background black -gravity center -extent 1920x1080 "$wall"
+convertwall "$wall" &> /dev/null
