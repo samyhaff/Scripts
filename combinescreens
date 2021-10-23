@@ -1,5 +1,5 @@
 #!/bin/sh
 
-convert -append $(echo $(sxiv * -qo)) out.png && \
+convert -append $(echo $(sxiv ~/Screenshots/* -qo)) out.png && \
     xclip -selection clipboard -t image/png out.png && \
     rm out.png
