@@ -1,7 +1,6 @@
 #!/bin/sh
 
-choice=$(echo "home\nportable\natos" | dmenu)
+choice=$(echo "home\nportable" | dmenu)
 [ -z $choice ] && exit 1
 
-${choice}monitor
 ${choice}monitor

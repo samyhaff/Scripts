@@ -1,0 +1,6 @@
+#!/bin/sh
+
+choice=$(echo "portable\nfixe" | dmenu)
+[ -z $choice ] && exit 1
+
+${choice}
