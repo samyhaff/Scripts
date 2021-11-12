@@ -1,4 +1,0 @@
-#!/bin/sh 
-
-bluetoothctl power on &&
-bluetoothctl connect 70:CE:8C:DA:37:AB

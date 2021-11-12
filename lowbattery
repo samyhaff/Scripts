@@ -7,7 +7,7 @@ acpi -b | awk -F'[,:%]' '{print $2, $3}' | {
 	read -r status capacity
 
 	if [ "$status" = Discharging -a "$capacity" -lt 20 ]; then
-		/bin/notify-send -u critical "LOW BATTERY";
+		/bin/notify-send "LOW BATTERY";
         /bin/mpv ~/Coding/scripts/hangouts.mp3 --volume=60
 	fi
 }

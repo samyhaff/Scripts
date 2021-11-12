@@ -1,5 +1,8 @@
 #!/bin/bash
 
+export DISPLAY=:0
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
+
 wall="/home/samy/Wallpapers/xkcd.png"
 
 max=$(curl -s https://xkcd.com/info.0.json | jq '.num')
@@ -7,9 +10,9 @@ max=$(curl -s https://xkcd.com/info.0.json | jq '.num')
 number=$(( $RANDOM % $max))  # get a random comic number
 img=$(curl -s https://xkcd.com/$number/info.0.json | jq -r '.img')
 
-wget "$img" -q -O "$wall"
+wget "$img" -q -O "$wall" &> /dev/null
 
 convert "$wall" -channel RGB -negate "$wall"
-convert "$wall" -resize 150% "$wall"
+convert "$wall" -resize 130% "$wall"
 convert "$wall" -background black -gravity center -extent 1920x1080 "$wall"
-convertwall "$wall" &> /dev/null
+$HOME/Coding/scripts/convertwall "$wall" &> /dev/null

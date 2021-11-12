@@ -3,7 +3,6 @@
 file=~/.config/zathura/zathurarc
 
 cat > $file << EOF
-set recolor
 set recolor-darkcolor "$(colorsXresources zathura.background)"
 set recolor-lightcolor "$(colorsXresources zathura.foreground)"
 set inputbar-fg "$(colorsXresources zathura.background)"

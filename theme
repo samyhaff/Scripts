@@ -10,7 +10,7 @@ xrdb ~/.Xresources
 # convert -size 1920x1080 xc:"$(xrdb -query | grep "*.color8" | awk '{print $NF}')" ~/Wallpapers/wall.png
 # wall=$(sxiv -qo Wallpapers/*)
 # convertWall.py "$colorscheme" "$wall" && feh --bg-scale ~/Wallpapers/wall.png
-xkcdwall
+# xkcdwall
 
 # nvim colors
 vim_colorscheme="$colorscheme"
@@ -29,7 +29,7 @@ bg=$(colorsXresources dunst.background)
 fr=$(colorsXresources dunst.frame)
 sed -i "s/frame_color .*/frame_color = \"$fr\"/" ~/.config/dunst/dunstrc
 sed -i "s/foreground .*/foreground = \"$fg\"/g" ~/.config/dunst/dunstrc
-sed -i "s/fbackground .*/background = \"$bg\"/g" ~/.config/dunst/dunstrc
+sed -i "s/background .*/background = \"$bg\"/g" ~/.config/dunst/dunstrc
 
 dunst &
 

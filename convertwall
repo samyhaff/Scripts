@@ -2,4 +2,4 @@
 
 colorscheme=$(sed "1s/.*\///; s/\"//" ~/.Xresources  | head -n 1)
 [ -z $1 ] && wall=$(sxiv -qo ~/Wallpapers/*) || wall="$1"
-convertWall.py "$colorscheme" "$wall" && feh --bg-scale ~/Wallpapers/wall.png
+/home/samy/Coding/scripts/convertWall.py "$colorscheme" "$wall" && feh --bg-scale ~/Wallpapers/wall.png
