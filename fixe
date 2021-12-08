@@ -1,6 +1,0 @@
-#!/bin/sh 
-
-echo 50 | sudo -A tee /sys/class/power_supply/BAT0/charge_stop_threshold
-echo 40 | sudo -A tee /sys/class/power_supply/BAT0/charge_start_threshold
-echo 50 | sudo -A tee /sys/class/power_supply/BAT0/charge_stop_threshold
-echo 40 | sudo -A tee /sys/class/power_supply/BAT0/charge_start_threshold

@@ -1,6 +1,16 @@
 #!/bin/sh
 
-choice=$(echo "portable\nfixe" | dmenu)
-[ -z $choice ] && exit 1
+current=$(cat /sys/class/power_supply/BAT0/charge_stop_threshold)
 
-${choice}
+if [ $current = 50 ]; then
+    echo 90 | sudo -A tee /sys/class/power_supply/BAT0/charge_stop_threshold
+    echo 85 | sudo -A tee /sys/class/power_supply/BAT0/charge_start_threshold
+else
+    echo 40 | sudo -A tee /sys/class/power_supply/BAT0/charge_start_threshold
+    echo 50 | sudo -A tee /sys/class/power_supply/BAT0/charge_stop_threshold
+fi
+
+start=$(cat /sys/class/power_supply/BAT0/charge_start_threshold)
+stop=$(cat /sys/class/power_supply/BAT0/charge_stop_threshold)
+
+notify-send "Battery: $start/$stop"
