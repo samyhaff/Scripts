@@ -1,0 +1,6 @@
+#!/bin/sh
+
+for pkg in $(pacman -Qe | cut -d ' ' -f 1)
+do
+    echo $pkg $(pacman -Qi $pkg | grep "Depends On" | cut -d : -f 2 | wc -w)
+done
