@@ -1,4 +1,4 @@
-#!/bin/sh 
+#!/bin/sh
 
 [ -z $1 ] && colorscheme="$(ls ~/.config/colorschemes/ | dmenu -i -l 10)" || colorscheme="$1"
 [ -z $colorscheme ] && exit 1
@@ -6,14 +6,14 @@
 sed -i "1s,.*,#include \"/home/samy/.config/colorschemes/$colorscheme\"," /home/samy/.Xresources
 xrdb ~/.Xresources
 
-# wallpaper 
+# wallpaper
 convert -size 1920x1080 xc:"$(xrdb -query | grep "*.background" | awk '{print $NF}')" ~/Wallpapers/wall.png \
     && feh --bg-scale ~/Wallpapers/wall.png
 # convertWall.py "$colorscheme" "$wall" && feh --bg-scale ~/Wallpapers/wall.png
 
 # nvim colors
 vim_colorscheme="$colorscheme"
-sed -i "s/colorscheme .*/colorscheme $vim_colorscheme/" ~/.config/nvim/general.vim
+sed -i "s/local colorscheme .*/local colorscheme = \"$vim_colorscheme\"/" ~/.config/nvim/lua/user/colorscheme.lua
 
 # dwm live reload
 xdotool key super+shift+x
@@ -21,8 +21,8 @@ xdotool key super+shift+x
 # zathura colors
 zathuracolors
 
-# dunst colors 
-killall dunst 
+# dunst colors
+killall dunst
 fg=$(colorsXresources dunst.foreground)
 bg=$(colorsXresources dunst.background)
 fr=$(colorsXresources dunst.frame)
