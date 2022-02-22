@@ -1,4 +1,4 @@
 #!/bin/sh
 
-image=$(sxiv ~/Wallpapers -bot)
+image=$(nsxiv ~/Wallpapers -bot)
 feh --bg-scale "$image"

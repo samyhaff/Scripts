@@ -7,8 +7,8 @@ sed -i "1s,.*,#include \"/home/samy/.config/colorschemes/$colorscheme\"," /home/
 xrdb ~/.Xresources
 
 # wallpaper
-convert -size 1920x1080 xc:"$(xrdb -query | grep "*.background" | awk '{print $NF}')" ~/Wallpapers/wall.png \
-    && feh --bg-scale ~/Wallpapers/wall.png
+# convert -size 1920x1080 xc:"$(xrdb -query | grep "*.background" | awk '{print $NF}')" ~/Wallpapers/wall.png \
+#     && feh --bg-scale ~/Wallpapers/wall.png
 # convertWall.py "$colorscheme" "$wall" && feh --bg-scale ~/Wallpapers/wall.png
 
 # nvim colors

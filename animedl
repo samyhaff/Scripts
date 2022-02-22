@@ -5,5 +5,5 @@ query=$@
 list=$(torrentscrap "$(echo $query | sed 's/ /+/g')")
 choice=$(echo "$list" | fzf --tac)
 download=$(echo $choice | awk '{print $NF}')
-! [ -z $download ] && aria2c -d ~/Downloads https://nyaa.si$download
-# ! [ -z "$download" ] && qbittorrent https://nyaa.si$download &
+# ! [ -z $download ] && aria2c -d ~/Downloads https://nyaa.si$download
+! [ -z "$download" ] && qbittorrent https://nyaa.si$download &
