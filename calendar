@@ -1,3 +1,8 @@
 #!/bin/sh
 
-calendar-cli calendar agenda --agenda-days 1 --event-template '{dtstart} {location} {summary}' --timestamp-format "%H:%M" | sort | head -n 1 | sed 's/\\n//g'
+calendar-cli \
+--config-section calendar calendar agenda \
+--agenda-days 1 \
+--event-template '{dtstart} {location} {summary}' \
+--timestamp-format "%H:%M" |
+sort | head -n 1 | sed 's/\\n//g'
