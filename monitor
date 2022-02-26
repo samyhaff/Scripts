@@ -1,0 +1,9 @@
+#!/bin/sh
+
+choice=$(echo "portable\nfixe" | dmenu -p Choice:) || exit 1
+
+if [ "$choice" = portable ]; then
+    portable
+elif [ "$choice" = fixe ]; then
+    home
+fi
