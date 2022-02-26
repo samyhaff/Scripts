@@ -16,6 +16,7 @@ home() {
     xrandr --output "${INT}" --auto --pos ${off_w}x${ext_h} --scale 1x1  --output "${EXT}" --auto --scale 1.3x1.3 --pos 0x0
 }
 
+xrandr --output HDMI-1 --mode 1920x1080
 home
 home
 ~/.fehbg
