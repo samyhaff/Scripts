@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# necessary for cron
+export DISPLAY=:0
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
+
+walldir="$1"
+[ -z "$walldir" ] && exit 1
+selection="$(find $walldir -type f | shuf -n 1)"
+feh --bg-scale $selection
