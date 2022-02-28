@@ -1,5 +1,7 @@
 #!/bin/sh
 
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
+
 todo_path="$HOME/Notes/todo"
 cal_path="$HOME/Notes/cal"
 
@@ -9,5 +11,5 @@ calendar-cli \
     --config-section calendar calendar agenda \
     --agenda-days 1 \
     --event-template '{dtstart} {location} {summary}' \
-    --timestamp-format "%H:%M" |
+    --timestamp-format "%d %H:%M" |
     sed 's/\\n//g' | sed -r '/^\s*$/d' > $cal_path
