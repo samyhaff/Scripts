@@ -1,8 +1,5 @@
 #!/bin/sh
 
-calendar-cli \
---config-section calendar calendar agenda \
---agenda-days 1 \
---event-template '{dtstart} {location} {summary}' \
---timestamp-format "%H:%M" |
-sort | head -n 1 | sed 's/\\n//g'
+cal_path="$HOME/Notes/cal"
+
+cat $cal_path | sort | head -n 1

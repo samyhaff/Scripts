@@ -1,6 +1,5 @@
 #!/bin/sh
 
-calendar-cli \
---config-section todo todo list \
---timestamp-format "%m-%d" |
-cut -d " " -f 2 | grep $(date +"%m-%d") | wc -l
+todo_path="$HOME/Notes/todo"
+
+cat todo | cut -d " " -f 2 | grep $(date +"%m-%d") | wc -l
