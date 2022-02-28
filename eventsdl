@@ -5,9 +5,9 @@ export XDG_RUNTIME_DIR=/run/user/$(id -u)
 todo_path="$HOME/Notes/todo"
 cal_path="$HOME/Notes/cal"
 
-calendar-cli --config-section todo todo list --timestamp-format "%m-%d" > $todo_path
+/usr/bin/calendar-cli --config-section todo todo list --timestamp-format "%m-%d" > $todo_path
 
-calendar-cli \
+/usr/bin/calendar-cli \
     --config-section calendar calendar agenda \
     --agenda-days 1 \
     --event-template '{dtstart} {location} {summary}' \
