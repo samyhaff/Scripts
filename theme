@@ -1,37 +1,45 @@
 #!/bin/sh
 
+getcolor () {
+    echo $(xrdb -query | grep "$1" | awk '{ print $NF }')
+}
+
 [ -z $1 ] && colorscheme="$(ls ~/.config/colorschemes/ | dmenu -i -l 10)" || colorscheme="$1"
 [ -z $colorscheme ] && exit 1
 
-sed -i "1s,.*,#include \"/home/samy/.config/colorschemes/$colorscheme\"," /home/samy/.Xresources
+# Xresources
+sed -i "1s,.*,#include \"$HOME/.config/colorschemes/$colorscheme\"," $HOME/.Xresources
 xrdb ~/.Xresources
 
 # wallpaper
-# convert -size 1920x1080 xc:"$(xrdb -query | grep "*.background" | awk '{print $NF}')" ~/Wallpapers/wall.png \
-#     && feh --bg-scale ~/Wallpapers/wall.png
-# convertWall.py "$colorscheme" "$wall" && feh --bg-scale ~/Wallpapers/wall.png
+convert -size 1920x1080 xc:"$(getcolor *.background)" $HOME/Wallpapers/wall.png \
+    && feh --bg-scale $HOME/Wallpapers/wall.png
 
 # nvim colors
-vim_colorscheme="$colorscheme"
-sed -i "s/local colorscheme .*/local colorscheme = \"$vim_colorscheme\"/" ~/.config/nvim/lua/user/colorscheme.lua
+sed -i "s/local colorscheme .*/local colorscheme = \"$colorscheme\"/" $HOME/.config/nvim/lua/user/colorscheme.lua
 
 # dwm live reload
 xdotool key super+shift+x
 
 # zathura colors
-zathuracolors
+zathura_config=$HOME/.config/zathura/zathurarc
+cat > $zathura_config << EOF
+set recolor-darkcolor "$(getcolor zathura.background)"
+set recolor-lightcolor "$(getcolor zathura.foreground)"
+set inputbar-fg "$(getcolor zathura.background)"
+set inputbar-bg "$(getcolor zathura.foreground)"
+set statusbar-fg "$(getcolor zathura.background)"
+set statusbar-bg "$(getcolor zathura.foreground)"
+map i recolor
+set selection-clipboard clipboard
+EOF
 
 # dunst colors
 killall dunst
-fg=$(colorsXresources dunst.foreground)
-bg=$(colorsXresources dunst.background)
-fr=$(colorsXresources dunst.frame)
-sed -i "s/frame_color .*/frame_color = \"$fr\"/" ~/.config/dunst/dunstrc
-sed -i "s/foreground .*/foreground = \"$fg\"/g" ~/.config/dunst/dunstrc
-sed -i "s/background .*/background = \"$bg\"/g" ~/.config/dunst/dunstrc
-
+fg=$(getcolor dunst.foreground)
+bg=$(getcolor dunst.background)
+fr=$(getcolor dunst.frame)
+sed -i "s/frame_color .*/frame_color = \"$fr\"/" $HOME/.config/dunst/dunstrc
+sed -i "s/foreground .*/foreground = \"$fg\"/g" $HOME/.config/dunst/dunstrc
+sed -i "s/background .*/background = \"$bg\"/g" $HOME/.config/dunst/dunstrc
 dunst &
-
-# GTK
-# oomox-cli /opt/oomox/scripted_colors/xresources/xresources-reverse
-# sed "s/gtk-theme-name=.*/gtk-theme-name=oomox-xresources-reverse/" ~/.config/gtk-3.0/settings.ini -i
