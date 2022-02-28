@@ -1,3 +1,0 @@
-#!/bin/sh 
-
-echo $(xrdb -query | grep "$1" | awk '{ print $NF }')
