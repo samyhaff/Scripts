@@ -2,4 +2,5 @@
 
 cal_path="$HOME/Notes/cal"
 
-cat $cal_path | sort | head -n 1
+cat $cal_path | grep -E "^$(date +'%d')" | sort | head -n 1 | cut -d ' ' -f 2-
+
