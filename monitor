@@ -1,9 +1,30 @@
 #!/bin/sh
 
-choice=$(echo "portable\nfixe" | dmenu -p Choice:) || exit 1
+extend() {
+    xrandr --output HDMI-1 --mode 1920x1080
+
+    EXT=`xrandr --current | sed 's/^\(.*\) connected.*$/\1/p;d' | grep -v ^eDP | head -n 1`
+    INT=`xrandr --current | sed 's/^\(.*\) connected.*$/\1/p;d' | grep -v ^DP | head -n 1`
+
+    ext_w=`xrandr | sed 's/^'"${EXT}"' [^0-9]* \([0-9]\+\)x.*$/\1/p;d'`
+    ext_h=`xrandr | sed 's/^'"${EXT}"' [^0-9]* [0-9]\+x\([0-9]\+\).*$/\1/p;d'`
+    int_w=`xrandr | sed 's/^'"${INT}"' [^0-9]* \([0-9]\+\)x.*$/\1/p;d'`
+    off_w=`echo $(( ($int_w-$ext_w)/2 )) | sed 's/^-//'`
+
+    xrandr --output "${INT}" --auto --pos ${off_w}x${ext_h} --scale 1x1  --output "${EXT}" --auto --scale 1.3x1.3 --pos 0x0
+    xrandr --output "${INT}" --auto --pos ${off_w}x${ext_h} --scale 1x1  --output "${EXT}" --auto --scale 1.3x1.3 --pos 0x0
+    $HOME/.fehbg
+}
+
+choice=$(echo "portable\nextend\nmirror" | dmenu -p Choice:) || exit 1
 
 if [ "$choice" = portable ]; then
-    portable
-elif [ "$choice" = fixe ]; then
-    home
+    xrandr --output HDMI-1 --off
+    notify-send "Monitor mode: Portable"
+elif [ "$choice" = extend ]; then
+    extend; extend
+    notify-send "Monitor mode: Extend"
+elif [ "$choice" = mirror ]; then
+    xrandr --output HDMI-1 --mode 1920x1080
+    notify-send "Monitor mode: Mirror"
 fi
