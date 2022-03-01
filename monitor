@@ -16,7 +16,7 @@ extend() {
     $HOME/.fehbg
 }
 
-choice=$(echo "portable\nextend\nmirror" | dmenu -p Choice:) || exit 1
+[ -z $1 ] && choice=$(echo "portable\nextend\nmirror" | dmenu -p Choice:) || choice="$1"
 
 if [ "$choice" = portable ]; then
     xrandr --output HDMI-1 --off
