@@ -21,6 +21,9 @@ sed -i "s/local colorscheme .*/local colorscheme = \"$colorscheme\"/" $HOME/.con
 # dwm live reload
 xdotool key super+shift+x
 
+# alacritty
+alacritty_colors
+
 # zathura colors
 zathura_config=$HOME/.config/zathura/zathurarc
 cat > $zathura_config << EOF
