@@ -8,7 +8,7 @@ acpi -b | awk -F'[,:%]' '{print $2, $3}' | {
 
 	if [ "$status" = Discharging -a "$capacity" -lt 20 ]; then
 		/bin/notify-send "LOW BATTERY";
-        /bin/mpv ~/Coding/scripts/hangouts.mp3 --volume=60
+        /bin/mpv $HOME/.config/hangouts.mp3 --volume=60
 	fi
 }
 

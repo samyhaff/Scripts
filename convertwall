@@ -1,5 +1,5 @@
 #!/bin/sh
 
 colorscheme=$(sed "1s/.*\///; s/\"//" ~/.Xresources  | head -n 1)
-[ -z $1 ] && wall=$(nsxiv -qo ~/Wallpapers/*) || wall="$1"
-/home/samy/Coding/scripts/convertWall.py "$colorscheme" "$wall" && feh --bg-scale ~/Wallpapers/wall.png
+[ -z $1 ] && wall=$(nsxiv -qo $HOME/Wallpapers/*) || wall="$1"
+$HOME/bin/convertWall.py "$colorscheme" "$wall" && feh --bg-scale $HOME/Wallpapers/wall.png

@@ -15,4 +15,4 @@ wget "$img" -q -O "$wall" &> /dev/null
 convert "$wall" -channel RGB -negate "$wall"
 convert "$wall" -resize 130% "$wall"
 convert "$wall" -background black -gravity center -extent 1920x1080 "$wall"
-$HOME/Coding/scripts/convertwall "$wall" &> /dev/null
+$HOME/bin/convertwall "$wall" &> /dev/null
