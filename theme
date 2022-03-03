@@ -1,11 +1,11 @@
 #!/bin/sh
 
 getcolor () {
-    echo $(xrdb -query | grep "$1" | awk '{ print $NF }')
+    xrdb -query | grep "$1" | awk '{ print $NF }'
 }
 
-[ -z $1 ] && colorscheme="$(ls ~/.config/colorschemes/ | dmenu -i -l 10)" || colorscheme="$1"
-[ -z $colorscheme ] && exit 1
+[ -z "$1" ] && colorscheme="$(ls ~/.config/colorschemes/ | dmenu -i -l 10)" || colorscheme="$1"
+[ -z "$colorscheme" ] && exit 1
 
 # Xresources
 sed -i "1s,.*,#include \"$HOME/.config/colorschemes/$colorscheme\"," $HOME/.Xresources
@@ -26,7 +26,7 @@ alacritty_colors
 
 # zathura colors
 zathura_config=$HOME/.config/zathura/zathurarc
-cat > $zathura_config << EOF
+cat > "$zathura_config" << EOF
 set recolor-darkcolor "$(getcolor zathura.background)"
 set recolor-lightcolor "$(getcolor zathura.foreground)"
 set inputbar-fg "$(getcolor zathura.background)"
