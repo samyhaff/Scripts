@@ -6,3 +6,4 @@ wal -i "$image" -ntq
 cat ~/.cache/wal/colors | pywalconvert > ~/.config/colorschemes/wal
 theme wal
 feh --bg-scale "$image"
+pywalfox update
