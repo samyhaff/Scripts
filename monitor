@@ -16,11 +16,12 @@ extend() {
     $HOME/.fehbg
 }
 
-[ -z $1 ] && choice=$(echo "portable\nextend\nmirror\nexternal" | dmenu -p Choice:) || choice="$1"
+[ -z $1 ] && choice=$(echo "portable\nextend\nmirror\ndock" | dmenu -p Choice:) || choice="$1"
 
 if [ "$choice" = portable ]; then
     xrandr --output eDP-1 --mode 1920x1080
     xrandr --output HDMI-1 --off
+    $HOME/.fehbg
     notify-send "Monitor mode: Portable"
 elif [ "$choice" = extend ]; then
     extend; extend
@@ -29,7 +30,7 @@ elif [ "$choice" = mirror ]; then
     xrandr --output eDP-1 --mode 1920x1080
     xrandr --output HDMI-1 --mode 1920x1080
     notify-send "Monitor mode: Mirror"
-elif [ "$choice" = external ]; then
+elif [ "$choice" = dock ]; then
     xrandr --output eDP-1 --off
     notify-send "Monitor mode: External"
 fi
