@@ -47,8 +47,4 @@ sed -i "s/foreground .*/foreground = \"$fg\"/g" $HOME/.config/dunst/dunstrc
 sed -i "s/background .*/background = \"$bg\"/g" $HOME/.config/dunst/dunstrc
 dunst &
 
-# GTK theme
-# $HOME/bin/oomox-gtk-theme/gtk-theme $HOME/.config/xresources-reverse -o xresources
-# sed "s/gtk-theme-name=.*/gtk-theme-name=xresources/" ~/.config/gtk-3.0/settings.ini -i
-
 notify-send "Applied "$colorscheme""
