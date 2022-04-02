@@ -1,0 +1,13 @@
+#!/bin/bash
+
+(
+    sleep 1
+
+    DISPLAY=":0.0"
+    XAUTHORITY="/home/samy/.Xauthority"
+    export DISPLAY XAUTHORITY
+
+    setxkbmap -option 'caps:ctrl_modifier' &
+    xcape -e 'Caps_Lock=Escape' &
+    xset r rate 200 50 &
+) &
