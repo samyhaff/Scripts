@@ -1,10 +1,12 @@
-#!/bin/sh 
+#!/bin/sh
 
-status=$(bluetoothctl info 14:3F:A6:B2:9F:BA | grep -i connected | cut -d " " -f 2)
+address=14:3F:A6:B2:9F:BA
+
+status=$(bluetoothctl info "$address" | grep -i connected | cut -d " " -f 2)
 
 if [ $status = "no" ]; then
     bluetoothctl power on &&
-    bluetoothctl connect 14:3F:A6:B2:9F:BA
+    bluetoothctl connect "$address"
 else
-    bluetoothctl disconnect 14:3F:A6:B2:9F:BA
+    bluetoothctl disconnect "$address"
 fi
