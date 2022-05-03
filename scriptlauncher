@@ -1,4 +1,0 @@
-#!/bin/bash
-
-choice=$(dmenu_path | dmenu)
-! [ -z $choice ] && st -e $choice

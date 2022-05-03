@@ -1,5 +1,0 @@
-#!/bin/sh
-
-todo_path="$HOME/Notes/todo"
-
-cat $todo_path | cut -d " " -f 2 | grep $(date +"%m-%d") | wc -l
