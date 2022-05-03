@@ -8,15 +8,3 @@ if [ "$status" = Charging ]; then
 else
     echo " $c%"
 fi
-
-# if [ "$c" = 100 ]; then
-#     echo " $c%"
-# elif [ "$c" -gt 75 ]; then
-#     echo " $c%"
-# elif [ "$c" -gt 50 ]; then
-#     echo " $c%"
-# elif [ "$c" -gt 25 ]; then 
-#     echo " $c%"
-# else
-#     echo " $c%"
-# fi

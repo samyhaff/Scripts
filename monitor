@@ -16,7 +16,7 @@ extend() {
     $HOME/.fehbg
 }
 
-[ -z $1 ] && choice=$(echo "portable\nextend\nmirror\ndock" | dmenu -p Choice:) || choice="$1"
+[ -z $1 ] && choice=$(echo -e "portable\nextend\nmirror\ndock" | dmenu -p Choice:) || choice="$1"
 
 if [ "$choice" = portable ]; then
     xrandr --output eDP-1 --mode 1920x1080
