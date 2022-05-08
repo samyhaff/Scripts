@@ -1,4 +1,4 @@
 #!/bin/sh
 
-path=~/Screenshots/$(date +%s).png
-maim -s | tee $path | xclip -selection clipboard -t image/png && notify-send "Screenshot"
+path=~/screenshots/$(date +%s).png
+maim -s | tee $path | xclip -selection clipboard -t image/png && notify-send "screenshot"
