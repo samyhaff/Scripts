@@ -1,15 +1,15 @@
 #!/bin/sh
 
-choice=$(echo -e "sleep\nreboot\nshutdown" | dmenu -i -p choice) || exit 1
+choice=$(echo "sleep\nreboot\nshutdown" | dmenu -i -p choice) || exit 1
 
 case "$choice" in
     "sleep")
-        systemctl suspend
+        loginctl suspend
         ;;
     "reboot")
-        reboot
+        loginctl reboot
         ;;
     "shutdown")
-        systemctl poweroff
+        loginctl poweroff
         ;;
 esac
