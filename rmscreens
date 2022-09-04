@@ -1,3 +1,0 @@
-#!/bin/sh
-
-nsxiv -qo ~/Screenshots/* | xargs rm

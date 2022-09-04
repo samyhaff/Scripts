@@ -24,7 +24,7 @@ if [ "$choice" = portable ]; then
     $HOME/.fehbg
     notify-send "Monitor mode: Portable"
 elif [ "$choice" = extend ]; then
-    extend; extend
+    extend;
     notify-send "Monitor mode: Extend"
 elif [ "$choice" = mirror ]; then
     xrandr --output eDP --mode 1920x1080

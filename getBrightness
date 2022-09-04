@@ -1,3 +1,0 @@
-#!/bin/sh 
-
-expr $(cat /sys/class/backlight/amdgpu_bl0/brightness) \* 100 / 255
