@@ -1,0 +1,7 @@
+#!/bin/sh
+
+choice=$(echo "fr:en\nen:fr" | dmenu -i -p choice) || exit 1
+sentence=$(dmenu -p "Sentence:" < /dev/null)
+
+trans=$(trans -b $choice "$sentence")
+notify-send "Translation: $trans"
