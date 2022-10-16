@@ -3,7 +3,7 @@
 [ -z $1 ] && image=$(nsxiv ~/Wallpapers -bot) || image=$1
 [ -z "$image" ] && exit 1
 wal -i "$image" -ntq
-cat ~/.cache/wal/colors | pywalconvert > ~/.config/colorschemes/wal
-theme wal
+cat ~/.cache/wal/colors | pywalconvert > ~/.config/colorschemes/pywal
+theme pywal
 feh --bg-scale "$image"
 pywalfox update

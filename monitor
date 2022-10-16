@@ -12,7 +12,6 @@ extend() {
     off_w=`echo $(( ($int_w-$ext_w)/2 )) | sed 's/^-//'`
 
     xrandr --output "${INT}" --auto --pos ${off_w}x${ext_h} --scale 1x1  --output "${EXT}" --auto --scale 1.3x1.3 --pos 0x0
-    xrandr --output "${INT}" --auto --pos ${off_w}x${ext_h} --scale 1x1  --output "${EXT}" --auto --scale 1.3x1.3 --pos 0x0
     $HOME/.fehbg
 }
 
@@ -24,7 +23,7 @@ if [ "$choice" = portable ]; then
     $HOME/.fehbg
     notify-send "Monitor mode: Portable"
 elif [ "$choice" = extend ]; then
-    extend;
+    extend; extend;
     notify-send "Monitor mode: Extend"
 elif [ "$choice" = mirror ]; then
     xrandr --output eDP --mode 1920x1080
