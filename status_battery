@@ -1,0 +1,16 @@
+#!/bin/sh
+
+status=$(cat /sys/class/power_supply/BAT0/status)
+capacity=$(cat /sys/class/power_supply/BAT0/capacity)
+
+if [ "$status" != Discharging ]; then
+    printf "ﮣ %d%%" "$capacity"
+elif [ "$capacity" -ge 75 ]; then
+    printf "   %d%%" "$capacity"
+elif [ "$capacity" -ge 50 -a "$capacity" -lt 75 ]; then
+    printf "   %d%%" "$capacity"
+elif [ "$capacity" -ge 25 -a "$capacity" -lt 50 ]; then
+    printf "   %d%%" "$capacity"
+else
+    printf "   %d%%" "$capacity"
+fi
