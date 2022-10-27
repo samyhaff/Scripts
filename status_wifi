@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if  iwgetid >> /dev/null; then
+    ssid=$(iwgetid -r)
+    printf "  %s" "$ssid"
+else
+    printf "睊 "
+fi
