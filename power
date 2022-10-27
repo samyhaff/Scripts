@@ -1,6 +1,6 @@
 #!/bin/sh
 
-choice=$(echo "sleep\nreboot\nshutdown" | dmenu -i -p choice) || exit 1
+choice=$(echo -e "sleep\nreboot\nshutdown" | dmenu -i -p choice) || exit 1
 
 case "$choice" in
     "sleep")

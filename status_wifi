@@ -2,7 +2,7 @@
 
 if  iwgetid >> /dev/null; then
     ssid=$(iwgetid -r)
-    printf "  %s" "$ssid"
+    printf "^C5^ ^d^ %s" "$ssid"
 else
-    printf "睊 "
+    printf "^C1^睊 ^d^"
 fi

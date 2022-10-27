@@ -4,13 +4,13 @@ status=$(pulsemixer --get-mute)
 volume=$(pulsemixer --get-volume | awk '{print $1;}')
 
 if [ "$status" = 1 ]; then
-    printf "婢 "
+    printf "^C1^婢 ^d^"
 elif [ "$volume" -ge 75 ]; then
-    printf "  %d%%" "$volume"
+    printf "^C4^ ^d^ %d%%" "$volume"
 elif [ "$volume" -ge 50 -a "$volume" -lt 75 ]; then
-    printf "墳  %d%%" "$volume"
+    printf "^C4^墳^d^ %d%%" "$volume"
 elif [ "$volume" -ge 25 -a "$volume" -lt 50 ]; then
-    printf " %d%%" "$volume"
+    printf "^C4^ ^d^ %d%%" "$volume"
 else
-    printf " %d%%" "$volume"
+    printf "^C4^ ^d^ %d%%" "$volume"
 fi
