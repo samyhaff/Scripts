@@ -1,0 +1,16 @@
+#!/bin/sh
+
+status=$(pulsemixer --get-mute)
+volume=$(pulsemixer --get-volume | awk '{print $1;}')
+
+if [ "$status" = 1 ]; then
+    printf "婢 "
+elif [ "$volume" -ge 75 ]; then
+    printf "  %d%%" "$volume"
+elif [ "$volume" -ge 50 -a "$volume" -lt 75 ]; then
+    printf "墳  %d%%" "$volume"
+elif [ "$volume" -ge 25 -a "$volume" -lt 50 ]; then
+    printf " %d%%" "$volume"
+else
+    printf " %d%%" "$volume"
+fi
