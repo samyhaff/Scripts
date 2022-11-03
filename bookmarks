@@ -1,0 +1,5 @@
+#/bin/sh
+
+bookmarks="$HOME/.config/bookmarks"
+choice=$(cat "$bookmarks" | dmenu -i -l 10 -p "Go to")
+[ -n "$choice" ] && firefox "$choice"
