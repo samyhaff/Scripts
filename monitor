@@ -1,7 +1,7 @@
 #!/bin/sh
 
 extend() {
-    xrandr --output HDMI-A-0 --mode 1920x1080
+    xrandr --output HDMI-A-0 --auto
 
     EXT=`xrandr --current | sed 's/^\(.*\) connected.*$/\1/p;d' | grep -v ^eDP | head -n 1`
     INT=`xrandr --current | sed 's/^\(.*\) connected.*$/\1/p;d' | grep -v ^DP | head -n 1`
@@ -30,6 +30,7 @@ elif [ "$choice" = mirror ]; then
     xrandr --output HDMI-A-0 --mode 1920x1080
     notify-send "Monitor mode: Mirror"
 elif [ "$choice" = dock ]; then
+    extend; extend
     xrandr --output eDP --off
     notify-send "Monitor mode: External"
 fi
