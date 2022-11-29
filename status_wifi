@@ -3,6 +3,9 @@
 if  iwgetid >> /dev/null; then
     ssid=$(iwgetid -r)
     printf "^C5^ ^d^ %s" "$ssid"
+    if nmcli con show --active | grep -q vpn0; then
+        printf " ^C5^[VPN]^d^"
+    fi
 else
     printf "^C1^睊 ^d^"
 fi
